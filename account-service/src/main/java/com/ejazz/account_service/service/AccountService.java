@@ -1,4 +1,3 @@
-// filepath: c:\Users\fahed-kh\workspace\ejazz-microservices-course-00\account-service\src\main\java\com\ejazz\account_service\service\AccountService.java
 package com.ejazz.account_service.service;
 
 import com.ejazz.account_service.dto.AccountDTO;
@@ -31,6 +30,7 @@ public class AccountService {
         account.setId(dto.getId());
         account.setUsername(dto.getName());
         account.setEmail(dto.getEmail());
+        account.setPassword("securepassword");
         return account;
     }
 
