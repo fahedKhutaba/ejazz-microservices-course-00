@@ -1,31 +1,31 @@
 package com.ejazz.account_service.controller;
 
-import com.ejazz.account_service.entity.Account;
-import com.ejazz.account_service.repository.AccountRepository;
-import jakarta.validation.Valid;
+import com.ejazz.account_service.dto.AccountDTO;
+import com.ejazz.account_service.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/accounts") // Ensure this matches your intended endpoint
+@RequestMapping("/api/accounts")
 public class AccountController {
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
-    // Get all accounts
     @GetMapping
-    public List<Account> getAllAccounts() {
-        return accountRepository.findAll();
+    public List<AccountDTO> getAllAccounts() {
+        return accountService.getAllAccounts();
     }
 
-    // Create a new account
+    @GetMapping("/{id}")
+    public AccountDTO getAccountById(@PathVariable Long id) {
+        return accountService.getAccountById(id);
+    }
+
     @PostMapping
-    public ResponseEntity<Account> createAccount(@Valid @RequestBody Account account) {
-        Account savedAccount = accountRepository.save(account);
-        return ResponseEntity.ok(savedAccount);
+    public AccountDTO createAccount(@RequestBody AccountDTO accountDTO) {
+        return accountService.saveAccount(accountDTO);
     }
 }
