@@ -1,0 +1,4 @@
+com\ejazz\account_service\controller\AccountController.class
+com\ejazz\account_service\entity\Account.class
+com\ejazz\account_service\repository\AccountRepository.class
+com\ejazz\account_service\AccountServiceApplication.class
