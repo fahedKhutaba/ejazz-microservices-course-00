@@ -1,10 +1,10 @@
-package com.ejazz.user_service;
+package com.ejazz.post_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserServiceApplicationTests {
+class PostServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

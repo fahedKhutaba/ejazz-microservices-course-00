@@ -1,13 +1,13 @@
-package com.ejazz.user_service;
+package com.ejazz.post_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserServiceApplication {
-//
+public class PostServiceApplication {
+
 	public static void main(String[] args) {
-		SpringApplication.run(UserServiceApplication.class, args);
+		SpringApplication.run(PostServiceApplication.class, args);
 	}
 
 }
