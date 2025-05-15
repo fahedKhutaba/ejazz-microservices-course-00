@@ -12,7 +12,7 @@ This document outlines the tasks for improving the `account-service` and impleme
 
 ---
 
-1. **Reformat the `Account` Data Model** 🟥
+1. **Reformat the `Account` Data Model** 🟩
    Add more details to the `Account` entity, such as:
 
    | **Field Name**       | **Data Type**     | **Mandatory** | **Settings / Notes**                                                                 |

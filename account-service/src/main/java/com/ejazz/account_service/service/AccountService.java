@@ -4,6 +4,7 @@ import com.ejazz.account_service.dto.AccountDTO;
 import com.ejazz.account_service.dto.CreateAccountDTO;
 import com.ejazz.account_service.entity.Account;
 import com.ejazz.account_service.repository.AccountRepository;
+import com.ejazz.common.exception.CustomerAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.mindrot.jbcrypt.BCrypt;
@@ -59,18 +60,25 @@ public class AccountService {
     }
 
     public AccountDTO saveAccount(CreateAccountDTO createAccountDTO) {
+        // Check for duplicate email
+        if (accountRepository.existsByEmail(createAccountDTO.getEmail())) {
+            throw new CustomerAlreadyExistException("An account with this email already exists.");
+        }
+
+        // Check for duplicate phone number
+        if (accountRepository.existsByPhoneNumber(createAccountDTO.getPhoneNumber())) {
+            throw new CustomerAlreadyExistException("An account with this phone number already exists.");
+        }
+
+        // Create and save the account
         Account account = new Account();
-
-        // Generate a unique account number
-        account.setAccountNumber(generateAccountNumber());
-
         account.setEmail(createAccountDTO.getEmail());
         account.setPassword(hashPassword(createAccountDTO.getPassword())); // Hash the password
         account.setFirstName(createAccountDTO.getFirstName());
         account.setFamilyName(createAccountDTO.getFamilyName());
-        account.setBirthDate(createAccountDTO.getBirthDate());
         account.setPhoneNumber(createAccountDTO.getPhoneNumber());
         account.setAddress(createAccountDTO.getAddress());
+        account.setAccountNumber(generateAccountNumber());
 
         Account savedAccount = accountRepository.save(account);
         return convertToDTO(savedAccount);
