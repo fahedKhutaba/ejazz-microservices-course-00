@@ -29,10 +29,15 @@ We began implementing our first microservice: **`account-service`**. Key compone
 We also discussed the **DTO (Data Transfer Object) design pattern**, which helps in:
 - Decoupling internal data models from external representations.
 - Enhancing security and performance by controlling exposed data.
+ https://martinfowler.com/eaaCatalog/dataTransferObject.html
+
 
 The week concluded with instructions to begin defining the next microservice: **`post-service`**.
 
 ---
+we go over the api documentation standard 
+
+--
 
 Here's a table that defines each of the listed Spring Boot dependencies along with their primary use:
 

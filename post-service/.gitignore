@@ -29,5 +29,12 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+
+# Other common ignores
+target/
+*.log
+*.tmp
+*.bak
+.DS_Store
+.idea/
 .vscode/
