@@ -34,4 +34,15 @@ The week concluded with instructions to begin defining the next microservice: **
 
 ---
 
-Would you like this summary formatted for a presentation slide or document as well?
+Here's a table that defines each of the listed Spring Boot dependencies along with their primary use:
+
+| **Dependency**               | **Definition**                                                                                                                                     | **Primary Use**                                                                 |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| **Spring Web**              | Provides features for building web applications, including RESTful services using Spring MVC.                                                     | To create web applications and REST APIs.                                        |
+| **H2 Database**             | An in-memory, lightweight relational database written in Java.                                                                                     | For development and testing without needing an external database.               |
+| **Spring Data JPA**         | Part of Spring Data, it simplifies data access using Java Persistence API (JPA) with repositories.                                                 | To interact with relational databases using JPA and reduce boilerplate code.    |
+| **Spring Boot Actuator**    | Adds production-ready features like monitoring, metrics, health checks, and more.                                                                  | To monitor and manage the application in production.                            |
+| **Spring Boot DevTools**    | Provides development-time features like automatic restarts, live reload, and configurations for faster development.                               | To enhance developer productivity during application development.               |
+| **Lombok**                  | A Java library that reduces boilerplate code by generating getters, setters, constructors, and more at compile time using annotations.              | To simplify Java code and improve readability.                                  |
+| **Spring Boot Starter Validation** | Provides support for bean validation using JSR-380 (e.g., `@NotNull`, `@Size`) with Hibernate Validator as the default implementation.         | To validate user input and ensure data integrity in models and DTOs.            |
+
