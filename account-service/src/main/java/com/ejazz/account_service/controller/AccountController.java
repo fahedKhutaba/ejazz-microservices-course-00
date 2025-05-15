@@ -1,6 +1,7 @@
 package com.ejazz.account_service.controller;
 
 import com.ejazz.account_service.dto.AccountDTO;
+import com.ejazz.account_service.dto.CreateAccountDTO;
 import com.ejazz.account_service.service.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -48,18 +49,35 @@ public class AccountController {
         return accountService.getAccountById(id);
     }
 
+    @PostMapping
     @Operation(
         summary = "Create a new account",
-        description = "Create a new user account with the provided details.",
+        description = """
+            Create a new user account with the provided details. 
+            A unique identifier (`accountNumber`) will be generated automatically for use between services. 
+            The password will be securely encrypted before being stored in the database.
+            
+            **Note**: Consider moving the authentication logic to a separate service in the future for better scalability and separation of concerns.
+        """,
         requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = "Details of the account to be created",
             required = true,
             content = @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = AccountDTO.class),
+                schema = @Schema(implementation = CreateAccountDTO.class),
                 examples = @ExampleObject(
                     name = "Create Account Example",
-                    value = "{\n  \"name\": \"Alice Johnson\",\n  \"email\": \"alice.johnson@example.com\",\n  \"password\": \"securepassword\"\n}"
+                    value = """
+                        {
+                          "email": "john.doe@example.com",
+                          "password": "securepassword",
+                          "firstName": "John",
+                          "familyName": "Doe",
+                          "birthDate": "1990-01-01",
+                          "phoneNumber": "+1234567890",
+                          "address": "123 Main St"
+                        }
+                        """
                 )
             )
         )
@@ -68,8 +86,7 @@ public class AccountController {
         @ApiResponse(responseCode = "201", description = "Account successfully created"),
         @ApiResponse(responseCode = "400", description = "Invalid input data")
     })
-    @PostMapping
-    public AccountDTO createAccount(@RequestBody AccountDTO accountDTO) {
-        return accountService.saveAccount(accountDTO);
+    public AccountDTO createAccount(@RequestBody CreateAccountDTO createAccountDTO) {
+        return accountService.saveAccount(createAccountDTO);
     }
 }
