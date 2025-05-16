@@ -1,3 +1,4 @@
+com\ejazz\account_service\dto\CreateAccountDTO.class
 com\ejazz\account_service\repository\AccountRepository.class
 com\ejazz\account_service\AccountServiceApplication.class
 com\ejazz\account_service\service\AccountService.class

@@ -1,33 +1,38 @@
 // filepath: c:\Users\fahed-kh\workspace\ejazz-microservices-course-00\account-service\src\main\java\com\ejazz\account_service\dto\AccountDTO.java
 package com.ejazz.account_service.dto;
 
+import jakarta.validation.constraints.*;
+import lombok.Data;
+
+import java.time.LocalDate;
+
+@Data
 public class AccountDTO {
-    private Long id;
-    private String name;
+
+    private String accountNumber; // No validation since it will be generated
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email should be valid")
     private String email;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    @NotBlank(message = "First name is required")
+    @Size(max = 100, message = "First name must not exceed 100 characters")
+    private String firstName;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @NotBlank(message = "Family name is required")
+    @Size(max = 100, message = "Family name must not exceed 100 characters")
+    private String familyName;
 
-    public String getName() {
-        return name;
-    }
+    @Past(message = "Birth date must be a past date")
+    private LocalDate birthDate;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Pattern(regexp = "^\\+?[0-9]{7,20}$", message = "Phone number must be valid")
+    private String phoneNumber;
 
-    public String getEmail() {
-        return email;
-    }
+    @Size(max = 255, message = "Address must not exceed 255 characters")
+    private String address;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private LocalDate createdAt;
+
+    private LocalDate updatedAt;
 }
