@@ -2,25 +2,35 @@
 package com.ejazz.account_service.dto;
 
 public class AccountDTO {
-    private Long id;
-    private String name;
+    private String firstName;
+    private String familyName;
+    private java.time.LocalDate birthDate;
     private String email;
+    private String password;
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getName() {
-        return name;
+    public String getFamilyName() {
+        return familyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFamilyName(String familyName) {
+        this.familyName = familyName;
+    }
+
+    public java.time.LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(java.time.LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getEmail() {
@@ -29,5 +39,13 @@ public class AccountDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

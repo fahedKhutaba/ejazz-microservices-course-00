@@ -18,19 +18,22 @@ public class AccountService {
     // Convert Account entity to AccountDTO
     private AccountDTO convertToDTO(Account account) {
         AccountDTO dto = new AccountDTO();
-        dto.setId(account.getId());
-        dto.setName(account.getUsername());
+        dto.setFirstName(account.getFirstName());
+        dto.setFamilyName(account.getFamilyName());
+        dto.setBirthDate(account.getBirthDate());
         dto.setEmail(account.getEmail());
+        // Do not expose password in DTO for output
         return dto;
     }
 
     // Convert AccountDTO to Account entity
     private Account convertToEntity(AccountDTO dto) {
         Account account = new Account();
-        account.setId(dto.getId());
-        account.setUsername(dto.getName());
+        account.setFirstName(dto.getFirstName());
+        account.setFamilyName(dto.getFamilyName());
+        account.setBirthDate(dto.getBirthDate());
         account.setEmail(dto.getEmail());
-        account.setPassword("securepassword");
+        account.setPassword(dto.getPassword()); // Set password from DTO
         return account;
     }
 
