@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccountController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">account-service</a> &gt; <a href="index.source.html" class="el_package">com.ejazz.account_service.controller</a> &gt; <span class="el_source">AccountController.java</span></div><h1>AccountController.java</h1><pre class="source lang-java linenums">package com.ejazz.account_service.controller;
+
+import com.ejazz.account_service.dto.AuthenticationRequest;
+import com.ejazz.common.exception.AuthenticationFailedException;
+import com.ejazz.account_service.dto.AccountDTO;
+import com.ejazz.account_service.dto.CreateAccountDTO;
+import com.ejazz.account_service.service.AccountService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/api/accounts&quot;)
+<span class="fc" id="L22">public class AccountController {</span>
+
+    @Autowired
+    private AccountService accountService;
+
+    @Operation(
+        summary = &quot;Get all accounts&quot;,
+        description = &quot;Retrieve a list of all user accounts in the system.&quot;
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved list of accounts&quot;),
+        @ApiResponse(responseCode = &quot;500&quot;, description = &quot;Internal server error&quot;)
+    })
+    @GetMapping
+    public List&lt;AccountDTO&gt; getAllAccounts() {
+<span class="nc" id="L37">        return accountService.getAllAccounts();</span>
+    }
+
+    @Operation(
+        summary = &quot;Get account by ID&quot;,
+        description = &quot;Retrieve details of a specific account by its ID.&quot;
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = &quot;200&quot;, description = &quot;Successfully retrieved account details&quot;),
+        @ApiResponse(responseCode = &quot;404&quot;, description = &quot;Account not found&quot;)
+    })
+    @GetMapping(&quot;/{id}&quot;)
+    public AccountDTO getAccountById(
+        @PathVariable Long id
+    ) {
+<span class="nc" id="L52">        return accountService.getAccountById(id);</span>
+    }
+
+    @PostMapping
+    @Operation(
+        summary = &quot;Create a new account&quot;,
+        description = &quot;&quot;&quot;
+            Create a new user account with the provided details. 
+            A unique identifier (`accountNumber`) will be generated automatically for use between services. 
+            The password will be securely encrypted before being stored in the database.
+            
+            **Note**: Consider moving the authentication logic to a separate service in the future for better scalability and separation of concerns.
+        &quot;&quot;&quot;,
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = &quot;Details of the account to be created&quot;,
+            required = true,
+            content = @Content(
+                mediaType = &quot;application/json&quot;,
+                schema = @Schema(implementation = CreateAccountDTO.class),
+                examples = @ExampleObject(
+                    name = &quot;Create Account Example&quot;,
+                    value = &quot;&quot;&quot;
+                        {
+                          &quot;email&quot;: &quot;john.doe@example.com&quot;,
+                          &quot;password&quot;: &quot;securepassword&quot;,
+                          &quot;firstName&quot;: &quot;John&quot;,
+                          &quot;familyName&quot;: &quot;Doe&quot;,
+                          &quot;birthDate&quot;: &quot;1990-01-01&quot;,
+                          &quot;phoneNumber&quot;: &quot;+1234567890&quot;,
+                          &quot;address&quot;: &quot;123 Main St&quot;
+                        }
+                        &quot;&quot;&quot;
+                )
+            )
+        )
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = &quot;201&quot;, description = &quot;Account successfully created&quot;),
+        @ApiResponse(responseCode = &quot;400&quot;, description = &quot;Invalid input data&quot;)
+    })
+    public AccountDTO createAccount(@RequestBody CreateAccountDTO createAccountDTO) {
+<span class="nc" id="L93">        return accountService.saveAccount(createAccountDTO);</span>
+    }
+
+        @PostMapping(&quot;/authenticate&quot;)
+    public ResponseEntity&lt;AccountDTO&gt; authenticate(@RequestBody AuthenticationRequest request) {
+<span class="nc" id="L98">        AccountDTO account = accountService.authenticate(request.getEmail(), request.getPassword());</span>
+<span class="nc" id="L99">        return ResponseEntity.ok(account);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

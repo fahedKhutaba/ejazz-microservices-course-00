@@ -1,5 +1,7 @@
 package com.ejazz.account_service.controller;
 
+import com.ejazz.account_service.dto.AuthenticationRequest;
+import com.ejazz.common.exception.AuthenticationFailedException;
 import com.ejazz.account_service.dto.AccountDTO;
 import com.ejazz.account_service.dto.CreateAccountDTO;
 import com.ejazz.account_service.service.AccountService;
@@ -10,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -88,5 +91,11 @@ public class AccountController {
     })
     public AccountDTO createAccount(@RequestBody CreateAccountDTO createAccountDTO) {
         return accountService.saveAccount(createAccountDTO);
+    }
+
+        @PostMapping("/authenticate")
+    public ResponseEntity<AccountDTO> authenticate(@RequestBody AuthenticationRequest request) {
+        AccountDTO account = accountService.authenticate(request.getEmail(), request.getPassword());
+        return ResponseEntity.ok(account);
     }
 }

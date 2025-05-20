@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+account-service,com.ejazz.account_service.service,AccountService,198,6,6,0,48,3,12,1,9,1
+account-service,com.ejazz.account_service,AccountServiceApplication,5,3,0,0,2,1,1,1,1,1
+account-service,com.ejazz.account_service.entity,Account,486,3,94,0,16,1,75,1,28,1
+account-service,com.ejazz.account_service.controller,AccountController,25,3,0,0,5,1,4,1,4,1
+account-service,com.ejazz.account_service.dto,CreateAccountDTO,82,0,16,0,3,0,15,0,7,0
+account-service,com.ejazz.account_service.dto,AccountDTO,398,0,78,0,10,0,62,0,23,0
+account-service,com.ejazz.account_service.dto,AuthenticationRequest,115,0,22,0,3,0,20,0,9,0

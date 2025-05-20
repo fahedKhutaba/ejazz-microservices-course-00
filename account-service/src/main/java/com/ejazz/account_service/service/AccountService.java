@@ -4,10 +4,13 @@ import com.ejazz.account_service.dto.AccountDTO;
 import com.ejazz.account_service.dto.CreateAccountDTO;
 import com.ejazz.account_service.entity.Account;
 import com.ejazz.account_service.repository.AccountRepository;
+import com.ejazz.common.exception.AuthenticationFailedException;
 import com.ejazz.common.exception.CustomerAlreadyExistException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.mindrot.jbcrypt.BCrypt;
+import java.util.Optional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class AccountService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
+
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     // Convert Account entity to AccountDTO
     public AccountDTO convertToDTO(Account account) {
@@ -30,6 +36,7 @@ public class AccountService {
         dto.setAddress(account.getAddress());
         dto.setCreatedAt(account.getCreatedAt());
         dto.setUpdatedAt(account.getUpdatedAt());
+        
         return dto;
     }
 
@@ -93,4 +100,17 @@ public class AccountService {
     private String hashPassword(String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
+
+        public AccountDTO authenticate(String email, String password) {
+        Account account = accountRepository.findByEmail(email)
+                .orElseThrow(() -> new AuthenticationFailedException("Invalid email or password"));
+
+        if (!BCrypt.checkpw(password, account.getPassword())) {
+            throw new AuthenticationFailedException("Invalid email or password");
+        }
+
+        return convertToDTO(account);
+    }
+     
+
 }

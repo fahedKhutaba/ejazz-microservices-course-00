@@ -34,7 +34,7 @@ This document outlines the tasks for improving the `account-service` and impleme
 
 ---
 
-2. **Global Exception Handling with `@ControllerAdvice`** 🟥
+1. **Global Exception Handling with `@ControllerAdvice`** 🟩
    - Add logic for a global exception handler using the `@ControllerAdvice` annotation.
    - Handle custom exceptions like `CustomerAlreadyExistException`.
 
@@ -45,7 +45,7 @@ This document outlines the tasks for improving the `account-service` and impleme
 
 ---
 
-4. **Avoiding `@Autowired` Annotation** 🟥
+4. **Avoiding `@Autowired` Annotation** 🟩
    - Use constructor-based dependency injection instead of field injection with `@Autowired`.
 
 ---
@@ -62,7 +62,7 @@ This document outlines the tasks for improving the `account-service` and impleme
 
 ---
 
-7. **Implement Authentication Logic** 🟥
+7. **Implement Authentication Logic** 🟩
    - Add an endpoint to authenticate users by email and password.
    - Validate the provided credentials against the stored hashed password.
    - Return a success response (e.g., a token or session ID) if the credentials match.
