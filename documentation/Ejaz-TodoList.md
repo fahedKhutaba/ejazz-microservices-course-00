@@ -9,3 +9,11 @@
 8. **service security** 
 9. **Monitoring , Observability** 
 10. **services Orchestration Kubernates**
+
+
+
+SQL IDE - SQLEctron
+Config Server
+mvn compile jib:dockerBuild
+
+Docker compose command 
