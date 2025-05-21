@@ -1,0 +1,58 @@
+Title,Description,Milestone,Labels,Status
+Define project structure,"As a developer, I want to define a consistent project structure, so that all services follow the same conventions and are easy to maintain.
+
+**DoD**:
+- Folder structure is defined and documented
+- Shared libraries or base templates are created (if needed)
+- README explains how to scaffold new services",infra-setup,epic: infra-setup,To Do
+Implement config-service,"As a developer, I want to implement a centralized config-service, so that all services can load their configuration dynamically.
+
+**DoD**:
+- Config service is implemented (e.g., Spring Cloud Config)
+- Configs are stored in a Git-backed repo
+- At least one service successfully loads config from it
+- Dockerized and runs in the network
+- Documented usage and structure of config files",infra-setup,epic: infra-setup,To Do
+Implement eureka-service,"As a developer, I want to set up a service registry using Eureka, so that services can discover each other dynamically.
+
+**DoD**:
+- Eureka server is implemented and running
+- At least one service registers successfully
+- Dockerized and networked
+- Health checks enabled
+- Documented registration process",infra-setup,epic: infra-setup,To Do
+Implement gateway-service,"As a developer, I want to implement an API Gateway, so that all client requests are routed through a single entry point.
+
+**DoD**:
+- Gateway routes requests to at least one backend service
+- Configurable via config-service
+- Dockerized and part of the network
+- Basic auth forwarding implemented
+- Swagger or route documentation available",infra-setup,epic: infra-setup,To Do
+Create shared config repo,"As a developer, I want to maintain a Git-based config repository, so that service configurations are versioned and environment-specific.
+
+**DoD**:
+- Git repo created with `dev`, `staging`, and `prod` folders
+- Configs for at least one service are stored and loaded
+- README explains structure and usage",infra-setup,epic: infra-setup,To Do
+Set up Docker network,"As a developer, I want to set up a shared Docker network, so that all services can communicate with each other during development.
+
+**DoD**:
+- Docker Compose file includes all infra services
+- Network is named and shared across services
+- All services can resolve each other by name
+- Verified with a test ping or health check",infra-setup,epic: infra-setup,To Do
+Smoke test infra services,"As a developer, I want to perform smoke tests on the infrastructure, so that I can confirm all services are communicating correctly.
+
+**DoD**:
+- All services start successfully via Docker Compose
+- Config-service loads configs
+- Eureka shows registered services
+- Gateway routes requests correctly
+- Logs show no critical errors",infra-setup,epic: infra-setup,To Do
+Document infra setup,"As a developer, I want to document the infrastructure setup, so that new team members can understand and replicate the environment.
+
+**DoD**:
+- README includes setup steps, service roles, and architecture diagram
+- Config repo structure is explained
+- Docker commands and troubleshooting tips included",infra-setup,epic: infra-setup,To Do
