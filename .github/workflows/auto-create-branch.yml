@@ -1,0 +1,27 @@
+name: Auto Create Feature Branch
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  create-branch:
+    if: github.event.label.name == 'In Progress'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Create feature branch
+        run: |
+          branch_name="feature/${{ github.event.issue.number }}-${{ github.event.issue.title }}"
+          # Clean up branch name (remove spaces and special chars)
+          branch_name=$(echo $branch_name | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9/_-' '-') 
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch_name"
+          git push origin "$branch_name"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
