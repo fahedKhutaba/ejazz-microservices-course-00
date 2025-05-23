@@ -1,0 +1,50 @@
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: ejazz-postgres
+    environment:
+      POSTGRES_DB: ejazzdb
+      POSTGRES_USER: ejazzuser
+      POSTGRES_PASSWORD: ejazzpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  config-server:
+    image: your-dockerhub-user/config-server:latest
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - postgres
+
+  account-service:
+    image: your-dockerhub-user/account-service:latest
+    container_name: account-service
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+    depends_on:
+      - config-server
+      - postgres
+
+  post-service:
+    image: your-dockerhub-user/post-service:latest
+    container_name: post-service
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+    depends_on:
+      - config-server
+      - postgres
+
+volumes:
+  postgres_data:
