@@ -1,7 +1,7 @@
 package com.ejazz.post_service.controller;
 
-import com.ejazz.post_service.entity.Post;
-import com.ejazz.post_service.repository.PostRepository;
+import com.ejazz.post_service.dto.PostDTO;
+import com.ejazz.post_service.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +14,18 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    private PostRepository postRepository;
+    private PostService postService;
 
     // Get all posts
     @GetMapping
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public List<PostDTO> getAllPosts() {
+        return postService.getAllPosts();
     }
 
     // Create a new post
     @PostMapping
-    public ResponseEntity<Post> createPost(@Valid @RequestBody Post post) {
-        Post savedPost = postRepository.save(post);
+    public ResponseEntity<PostDTO> createPost(@Valid @RequestBody PostDTO postDTO) {
+        PostDTO savedPost = postService.createPost(postDTO);
         return ResponseEntity.ok(savedPost);
     }
 }
