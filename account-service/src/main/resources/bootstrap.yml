@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: account-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+      # 8888 is the default port for config-server
