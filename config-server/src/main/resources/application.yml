@@ -1,7 +1,17 @@
 spring:
+  application:
+    name: config-server
+  profiles:
+
+    active: git
   cloud:
     config:
       server:
         git:
-          uri: file:///absolute/path/to/ejazz-config-repo
-          # Or use a remote URL if hosted on GitHub
+          uri: "https://github.com/fahedKhutaba/ejazz-config-repo.git"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+server:
+  port: 8888
