@@ -2,7 +2,7 @@
 set DOCKER_USER=your-dockerhub-user
 
 REM List your services here
-set SERVICES=config-server eureka-service account-service post-service
+set SERVICES=config-server eureka-service account-service post-service feed-service
 
 REM 1. Build JARs
 for %%S in (%SERVICES%) do (
