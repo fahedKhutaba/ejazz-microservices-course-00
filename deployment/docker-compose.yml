@@ -1,3 +1,4 @@
+version: '3.8'
 
 services:
   postgres:
@@ -22,28 +23,57 @@ services:
     depends_on:
       - postgres
 
-  account-service:
-    image: your-dockerhub-user/account-service:latest
-    container_name: account-service
+  eureka-service:
+    image: your-dockerhub-user/eureka-service:latest
+    container_name: eureka-service
     ports:
-      - "8081:8080"
+      - "8070:8070"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_CLOUD_CONFIG_URI: http://config-server:8888
     depends_on:
       - config-server
+
+  account-service:
+    image: your-dockerhub-user/account-service:latest
+    container_name: account-service
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-service:8070/eureka/
+    depends_on:
+      - config-server
+      - eureka-service
       - postgres
 
   post-service:
     image: your-dockerhub-user/post-service:latest
     container_name: post-service
     ports:
-      - "8082:8080"
+      - "8081:8081"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-service:8070/eureka/
     depends_on:
       - config-server
+      - eureka-service
+      - postgres
+
+  feed-service:
+    image: your-dockerhub-user/feed-service:latest
+    container_name: feed-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_CLOUD_CONFIG_URI: http://config-server:8888
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-service:8070/eureka/
+    depends_on:
+      - config-server
+      - eureka-service
       - postgres
 
 volumes:

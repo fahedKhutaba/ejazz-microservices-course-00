@@ -1,0 +1,40 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# Maven build output
+**/target/
+
+# JaCoCo code coverage reports
+**/target/site/jacoco/
+
+# Compiled class files
+**/target/classes/
+
+# Logs
+*.log
+
+# IDE files
+/.idea/
+/*.iml
+*.sw?
+.vscode/
+*.class
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Node modules (if any frontend)
+node_modules/
+
+# Ignore config secrets (if any)
+secrets.yml

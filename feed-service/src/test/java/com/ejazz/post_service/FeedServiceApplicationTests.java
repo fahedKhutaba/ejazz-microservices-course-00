@@ -1,11 +1,13 @@
-package com.ejazz.config_service;
+package com.ejazz.feed_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConfigServiceApplicationTests {
-    @Test
-    void contextLoads() {
-    }
+class FeedServiceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
 }

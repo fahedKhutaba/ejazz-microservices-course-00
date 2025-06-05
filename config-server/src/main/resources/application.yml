@@ -1,9 +1,6 @@
 spring:
   application:
     name: config-server
-  profiles:
-
-    active: git
   cloud:
     config:
       server:
@@ -13,5 +10,6 @@ spring:
           timeout: 5
           clone-on-start: true
           force-pull: true
+
 server:
   port: 8888

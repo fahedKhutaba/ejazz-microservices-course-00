@@ -1,4 +1,4 @@
-# ejazz-microservices-course-00
+git# ejazz-microservices-course-00
 
 This project demonstrates Microservices Architecture by building a social network platform (similar to Twitter) using Spring Boot, Java 21, PostgreSQL, and Spring Cloud Config.
 

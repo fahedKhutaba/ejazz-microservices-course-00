@@ -9,11 +9,11 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>post-service</artifactId>
+    <artifactId>feed-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>post-service</name>
-    <description>Post microservice</description>
+    <name>feed-service</name>
+    <description>feed microservice</description>
 
     <dependencies>
         <dependency>
