@@ -1,14 +1,14 @@
 server:
-  port: 8080
+  port: 8070
 spring:
-  profiles:
-    active: dev
   application:
-    name: account-service
+    name: eureka-service
   config:
     import: "optional:configserver:http://localhost:8888"
+
 eureka:
   client:
+    register-with-eureka: false
+    fetch-registry: false
     service-url:
       defaultZone: http://localhost:8070/eureka/
-  
