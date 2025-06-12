@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/*.jar app.jar
 
 # Expose the port (replace with your service's port)
-EXPOSE 8081
+EXPOSE 8080
 
 # Run the jar
 ENTRYPOINT ["java", "-jar", "app.jar"]

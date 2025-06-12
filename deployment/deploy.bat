@@ -1,8 +1,7 @@
 @echo off
-set DOCKER_USER=your-dockerhub-user
 
-REM List your services here
-set SERVICES=config-server eureka-service account-service post-service feed-service
+REM List your services and their folders here
+set SERVICES=config-server eureka-service account-service post-service feed-service gateway-server
 
 REM 1. Build JARs
 for %%S in (%SERVICES%) do (
@@ -12,13 +11,11 @@ for %%S in (%SERVICES%) do (
     cd ..\deployment
 )
 
-REM 2. Build Docker images and push to Docker Hub
+REM 2. Build Docker images with explicit name:tag
 for %%S in (%SERVICES%) do (
     echo Building Docker image for %%S...
     cd ..\%%S
-    docker build -t %DOCKER_USER%/%%S:latest .
-    echo Pushing %%S image to Docker Hub...
-    docker push %DOCKER_USER%/%%S:latest
+    docker build -t %%S:latest .
     cd ..\deployment
 )
 
