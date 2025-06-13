@@ -1,10 +1,5 @@
 server:
   port: 8080
-spring:
-  application:
-    name: gateway-srver
-  config:
-    import: "optional:configserver:http://localhost:8888"
 
 eureka:
   instance:
@@ -13,4 +8,24 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8070/eureka/
+      defaultZone: "http://localhost:8070/eureka/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    config:
+      enabled: false
+    gateway:
+      routes:
+        - id: test_route
+          uri: http://httpbin.org/get
+          predicates:
+            - Path=/test/**
+

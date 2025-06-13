@@ -5,4 +5,5 @@
 | account-service  | 8081      | http://localhost:8081/actuator      |
 | post-service     | 8082      | http://localhost:8082/actuator      |
 | feed-service     | 8083      | http://localhost:8083/actuator      |
-| gateway-server   | 8080      | http://localhost:8080/actuator      |
+| gateway-service  | 8090      | http://localhost:8090/actuator      |
+| gateway-service  | 8090      | http://localhost:8090/actuator/gateway/routes      |
